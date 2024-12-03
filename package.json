@@ -1,0 +1,23 @@
+{
+  "name": "advent-of-code-2024",
+  "version": "1.0.0",
+  "description": "My solutions for the 2024 Advent of Code",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/creativedarkness/advent-of-code-2024.git"
+  },
+  "author": "Missy Schultz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/creativedarkness/advent-of-code-2024/issues"
+  },
+  "homepage": "https://github.com/creativedarkness/advent-of-code-2024#readme",
+  "dependencies": {
+    "jest": "^29.7.0",
+    "standard": "^17.1.2"
+  }
+}

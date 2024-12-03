@@ -1,14 +1,9 @@
-const fs = require('fs')
-const path = require('path')
-const {INPUT, TEST_DATA_PART_ONE, TEST_DATA_PART_TWO } = require('../input-types')
+const { getInputData } = require('../utility/get-input-data')
+const {INPUT, TEST_INPUT } = require('../input-types')
 
-
-function getInputData (file) {
-  return fs.readFileSync(path.resolve(__dirname, `./${file}`), 'utf-8').toString().split('\n')
-}
 
 exports.partOne = function (file) {
-  const input = getInputData(file)
+  const input = getInputData(file, 1)
   const rightArray = input.map((line) => {
     const [left, right] = line.split('  ')
     return Number(right)
@@ -18,21 +13,37 @@ exports.partOne = function (file) {
     return Number(left)
   }).sort((a, b) => a - b)
 
-  // compare the two arrays and return the total distance between the two arrays at the same index using the reduce method
   let totalDistance = 0
+
   rightArray.forEach((right, index) => {
     totalDistance += Math.abs(right - leftArray[index])
   })
 
-
-  // for (let i = 0; i < rightArray.length; i++) {
-  //   totalDistance += Math.abs(rightArray[i] - leftArray[i])
-  // }
-
-
   return totalDistance
 }
 
-console.log(this.partOne(TEST_DATA_PART_ONE))
-// console.log(this.partOne(TEST_DATA_PART_TWO))
+exports.partTwo = function (file) {
+  const input = getInputData(file, 1)
+
+  const rightArray = input.map((line) => {
+    const [left, right] = line.split('  ')
+    return Number(right)
+  }).sort((a, b) => a - b)
+  const leftArray = input.map((line) => {
+    const [left, right] = line.split('  ')
+    return Number(left)
+  })
+
+const matches = []
+
+  rightArray.forEach((num) => {
+    const matched = leftArray.find(el => el === num)
+    if (!!matched) matches.push(matched)
+
+  })
+console.log({ rightArray, leftArray, matches, rouge: matches[3] })
+}
+
+// console.log(this.partOne(TEST_INPUT))
+// console.log(this.partTwo(TEST_INPUT))
 // console.log(this.partOne(INPUT))
