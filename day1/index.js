@@ -1,15 +1,15 @@
 const { getInputData } = require('../utility/get-input-data')
-const {INPUT, TEST_INPUT } = require('../input-types')
+const {INPUT } = require('../input-types')
 
 
 exports.partOne = function (file) {
   const input = getInputData(file, 1)
   const rightArray = input.map((line) => {
-    const [left, right] = line.split('  ')
+    const [right, left] = line.split('  ')
     return Number(right)
   }).sort((a, b) => a - b)
   const leftArray = input.map((line) => {
-    const [left, right] = line.split('  ')
+    const [right, left] = line.split('  ')
     return Number(left)
   }).sort((a, b) => a - b)
 
@@ -26,24 +26,21 @@ exports.partTwo = function (file) {
   const input = getInputData(file, 1)
 
   const rightArray = input.map((line) => {
-    const [left, right] = line.split('  ')
+    const [right, left] = line.split('  ')
     return Number(right)
-  }).sort((a, b) => a - b)
+  })
   const leftArray = input.map((line) => {
-    const [left, right] = line.split('  ')
+    const [right, left] = line.split('  ')
     return Number(left)
   })
 
-const matches = []
-
-  rightArray.forEach((num) => {
-    const matched = leftArray.find(el => el === num)
-    if (!!matched) matches.push(matched)
-
+  let similarityScore = 0
+  rightArray.forEach((right) => {
+    const leftCount = leftArray.filter((num) => num === right).length
+    similarityScore += right * leftCount
   })
-console.log({ rightArray, leftArray, matches, rouge: matches[3] })
+  return similarityScore
 }
 
-// console.log(this.partOne(TEST_INPUT))
-// console.log(this.partTwo(TEST_INPUT))
-// console.log(this.partOne(INPUT))
+console.log('Day 1:', this.partOne(INPUT))
+console.log('Day 2:', this.partTwo(INPUT))

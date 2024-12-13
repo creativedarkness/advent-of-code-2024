@@ -1,10 +1,10 @@
 const { partOne,  partTwo } = require('./index')
 const {TEST_INPUT} = require('../input-types')
 
-describe('Day 1', () => {
+describe('Day 2', () => {
   describe('partOne', () => {
-    it('find the total distance between the left list and the right list', () => {
-      const expected = 11
+    it('find the number of "safe" reports', () => {
+      const expected = 2
       const actual = partOne(TEST_INPUT)
 
       expect(actual).toEqual(expected)
